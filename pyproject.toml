@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "scrapy-ozon"
+version = "0.1.0"
+description = ""
+authors = ["likeinlife <likeinlife@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+scrapy = "^2.11.1"
+ipython = "^8.22.2"
+undetected-chromedriver = "^3.5.5"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.2"
+mypy = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
