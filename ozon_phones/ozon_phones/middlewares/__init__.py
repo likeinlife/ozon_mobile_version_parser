@@ -1,1 +1,2 @@
+from .from_file_middleware import FromFileMiddleware
 from .selenium_middlware import SeleniumMiddleware

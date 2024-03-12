@@ -3,10 +3,10 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from dataclasses import dataclass
 
 
-class OzonPhonesItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+@dataclass
+class OzonPhonesItem:
+    name: str
+    os_version: str

@@ -7,7 +7,7 @@ from scrapy.responsetypes import Response
 
 @dataclass(match_args=True)
 class Scroll:
-    wait_time: float = 1
+    wait_time: float = 2
     length: int = 5000
 
 
@@ -22,4 +22,4 @@ class SeleniumRequest(Request):
     ):
         self.scroll = scroll
 
-        super().__init__(url=url, callback=callback, *args, **kwargs)
+        super().__init__(*args, url=url, callback=callback, **kwargs)

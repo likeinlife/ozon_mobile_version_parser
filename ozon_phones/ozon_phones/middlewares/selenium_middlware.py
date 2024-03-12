@@ -8,8 +8,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from ozon_phones.custom_request import Scroll, SeleniumRequest
 from ozon_phones.errors import IncorrectRequestType
+from ozon_phones.selenium_request import Scroll, SeleniumRequest
 
 
 class SeleniumMiddleware:
@@ -34,13 +34,14 @@ class SeleniumMiddleware:
             raise IncorrectRequestType(request)
         self.driver.get(request.url)
 
+        WebDriverWait(self.driver, 15).until_not(EC.title_is("Antibot Challenge Page"))
+
         match request.scroll:
             case Scroll(wait_time, length):
                 time.sleep(wait_time)
                 self.driver.execute_script(f"window.scrollTo(5, {length});")
                 time.sleep(wait_time)
 
-        WebDriverWait(self.driver, 5).until_not(EC.title_is("Antibot Challenge Page"))
         content = self.driver.page_source
 
         return HtmlResponse(
