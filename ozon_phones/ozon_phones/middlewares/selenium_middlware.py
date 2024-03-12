@@ -24,7 +24,7 @@ class SeleniumMiddleware:
         headless = crawler.settings.get("HEADLESS", False)
         middleware = cls(headless)
 
-        crawler.signals.connect(middleware.close, signals.spider_closed)
+        crawler.signals.connect(middleware._close, signals.spider_closed)
 
         return middleware
 
