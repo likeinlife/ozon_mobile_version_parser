@@ -1,5 +1,3 @@
-import logging
-
 BOT_NAME = "ozon_phones"
 
 SPIDER_MODULES = ["ozon_phones.spiders"]

@@ -4,7 +4,6 @@ import undetected_chromedriver as uc
 from scrapy import signals
 from scrapy.crawler import Crawler, Spider
 from scrapy.http import HtmlResponse, Request, Response
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -25,7 +24,7 @@ class SeleniumMiddleware:
         headless = crawler.settings.get("HEADLESS", False)
         middleware = cls(headless)
 
-        # crawler.signals.connect(middleware.close, signals.spider_closed)
+        crawler.signals.connect(middleware.close, signals.spider_closed)
 
         return middleware
 
@@ -44,9 +43,7 @@ class SeleniumMiddleware:
 
         content = self.driver.page_source
 
-        return HtmlResponse(
-            request.url, encoding="utf-8", body=content, request=request
-        )
+        return HtmlResponse(request.url, encoding="utf-8", body=content, request=request)
 
     def process_response(self, request: Request, response: Response, spider: Spider):
         return response

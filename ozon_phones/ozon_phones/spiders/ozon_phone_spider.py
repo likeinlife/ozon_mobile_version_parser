@@ -1,4 +1,3 @@
-from distutils.file_util import move_file
 from typing import Iterable
 
 import scrapy
@@ -14,9 +13,11 @@ class OzonPhoneSpider(scrapy.Spider):
     name = "ozon-phone"
     category_uri = "/category/smartfony-15502/"
     domain = "https://www.ozon.ru"
+    start_page = 1
+    end_page = 5
 
     def start_requests(self) -> Iterable[Request]:
-        for i in range(7, 10):
+        for i in range(self.start_page, self.end_page):
             page_url = self.domain + self.category_uri + f"?page={i}"
             yield SeleniumRequest(url=page_url, callback=self.parse_product_list, scroll=Scroll(length=5000))
 
