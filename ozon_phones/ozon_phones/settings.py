@@ -3,19 +3,13 @@ BOT_NAME = "ozon_phones"
 SPIDER_MODULES = ["ozon_phones.spiders"]
 NEWSPIDER_MODULE = "ozon_phones.spiders"
 
-# Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 HEADLESS = False
 
 
-# SPIDER_MIDDLEWARES = {
-#    "ozon_phones.middlewares.OzonPhonesSpiderMiddleware": 543,
-# }
-
 DOWNLOADER_MIDDLEWARES = {
     "ozon_phones.middlewares.SeleniumMiddleware": 543,
-    # "ozon_phones.middlewares.FromFileMiddleware": 543,
 }
 
 ITEM_PIPELINES = {
